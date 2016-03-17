@@ -1,27 +1,39 @@
 //---Global Variables
 
-var trainData = new Firebase ("https://trainschedulehmwk.firebaseio.com/");
-var name ="";
+var trainData 	= new Firebase ("https://trainschedulehmwk.firebaseio.com/");
+var name 		="";
 var destination = "";
-var frequency = 0;
+var frequency 	= 0;
 var nextArrival = 0;
-var minAway =0;
+var minAway 	=0;
+var firstTrain 	="";
+var now = moment();
+
+//Momnent JS calulations------------------------------------
+
+$('#time').html(now.format("LT"));
+
 
 
 //--Functions 
 
 $('#submit').on('click', function(){
 
-	name = $('#name').val().trim();
+	name 		= $('#name').val().trim();
+	console.log(name);
 	destination = $('#destination').val().trim();
-	frequency = $('#frequency').val().trim();
-	nextArrival= $('#nextArrival').val().trim();
-	minAway = $('#minAway').val().trim();
-	console.log('1');
+	console.log(destination);
+	frequency 	= $('#frequency').val();
+	console.log(frequency);
+	nextArrival= $('#nextArrival').val();
+	firstTrain = $('#firstTrain').val();
+	console.log(firstTrain)
+	minAway 	= $('#minAway').val()
+	console.log(minAway);
 	$('.table').append("<tr>"+
 						"<td>"+name+"</td>"+
 						"<td>"+destination+"</td>"+
-						"<td>"+frequency+"</td>"+
+						"<td>"+frequency+" mins </td>"+
 						"<td>"+nextArrival+"</td>"+
 						"<td>"+minAway+"</td>");
 	console.log('2');
@@ -29,13 +41,16 @@ $('#submit').on('click', function(){
 	trainData.push({
 		name: name, 
 		destination: destination,
-		start: start,
-		frequency: frequency
+		frequency: frequency,
+		nextArrival: nextArrival,
+		minAway: minAway,
+		firstTrain: firstTrain
 	});
 
 	$('#name').val('');
-	$('#role').val('');
-	$('#date').val('');
+	$('#destination').val('');
+	$('#frequency').val('');
+	$('#nextArrival').val('');
 	$('#rate').val('');
 
 return false;
@@ -44,7 +59,7 @@ return false;
 
 
 
-employeeData.on('child_added', function(snapshot, prevChildKey){
+trainData.on('child_added', function(snapshot, prevChildKey){
 	var newPost = snapshot.val();
 	$('#past').append(newPost);
 });

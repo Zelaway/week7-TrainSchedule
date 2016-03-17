@@ -8,7 +8,8 @@
 
 
 	<!--Firebase-->
-	<script src="https://trainschedulehmwk.firebaseio.com/"></script>
+	<script src="https://cdn.firebase.com/js/client/2.4.1/firebase.js"></script>
+	<script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
 
 	<title>Simple Train Schedule</title>
 </head>
@@ -30,6 +31,7 @@
 					<tr>
 						<th>Train Name</th>
 						<th>Destination</th>
+						<th>Current Time</th>
 						<th>Frequency (mins)</th>
 						<th>Next Arrival</th>
 						<th>Minutes Away</th>
@@ -38,6 +40,7 @@
 					<tr>
 						<td>Adam Sawyer Train</td>
 						<td>Rochester NY</td>
+						<td id="time"></td>
 						<td>30 mins</td>
 						<td>12:00</td>
 						<td>60</td>
