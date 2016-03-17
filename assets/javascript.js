@@ -5,9 +5,10 @@ var name 		="";
 var destination = "";
 var frequency 	= 0;
 var nextArrival = 0;
-var minAway 	=0;
+var minAway 	= 0;
 var firstTrain 	="";
 var now = moment();
+
 
 //Momnent JS calulations------------------------------------
 
@@ -23,10 +24,10 @@ $('#submit').on('click', function(){
 	console.log(name);
 	destination = $('#destination').val().trim();
 	console.log(destination);
-	frequency 	= $('#frequency').val();
+	frequency 	= $('#frequency').val()+now.format;
 	console.log(frequency);
-	nextArrival= $('#nextArrival').val();
 	firstTrain = $('#firstTrain').val();
+	nextArrival= $('#nextArrival').val();
 	console.log(firstTrain)
 	minAway 	= $('#minAway').val()
 	console.log(minAway);
