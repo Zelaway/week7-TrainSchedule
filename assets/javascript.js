@@ -24,17 +24,39 @@ $('#submit').on('click', function(){
 	console.log(name);
 	destination = $('#destination').val().trim();
 	console.log(destination);
-	frequency 	= $('#frequency').val()+now.format;
+	frequency 	= $('#frequency').val();
 	console.log(frequency);
 	firstTrain = $('#firstTrain').val();
-	nextArrival= $('#nextArrival').val();
+	var firstTimeConverted = moment(firstTrain,"hh:mm").subtract(0, "years");
+		console.log(firstTimeConverted._i);
+
+
+	// nextArrival= moment().format("hh:mm A");
+	
+
 	console.log(firstTrain)
-	minAway 	= $('#minAway').val()
+	// Calculation tp get time away
+	var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
+		console.log("DIFFERENCE IN TIME: " + diffTime);
+
+	// Calculation to get current minutes away
+		//time apart
+	var tRemainder = diffTime % frequency; 
+			console.log(tRemainder);
+		//mintes until train
+	var tMinutesTillTrain = frequency - tRemainder;
+		console.log("MINUTES TILL TRAIN: " + tMinutesTillTrain);
+		//next arrival
+	var nextArrival = moment().add(tMinutesTillTrain, "minutes")
+			console.log("ARRIVAL TIME: " + moment(nextArrival).format("hh:mm A"))
+
+
 	console.log(minAway);
 	$('.table').append("<tr>"+
 						"<td>"+name+"</td>"+
 						"<td>"+destination+"</td>"+
-						"<td>"+frequency+" mins </td>"+
+						"<td>"+now.format("hh:mm A")+"</td>"+
+						"<td>"+frequency+"</td>"+
 						"<td>"+nextArrival+"</td>"+
 						"<td>"+minAway+"</td>");
 	console.log('2');
@@ -51,7 +73,6 @@ $('#submit').on('click', function(){
 	$('#name').val('');
 	$('#destination').val('');
 	$('#frequency').val('');
-	$('#nextArrival').val('');
 	$('#rate').val('');
 
 return false;
