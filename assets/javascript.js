@@ -31,7 +31,8 @@ $('#submit').on('click', function(){
 		console.log(firstTimeConverted._i);
 
 
-	nextArrival= 5;
+	// nextArrival= 5;
+	// console.log(nextArrival);
 	
 
 	console.log(firstTrain)
@@ -44,11 +45,11 @@ $('#submit').on('click', function(){
 	var tRemainder = diffTime % frequency; 
 			console.log(tRemainder);
 		//mintes until train
-	var tMinutesTillTrain = frequency - tRemainder;
-		console.log("MINUTES TILL TRAIN: " + tMinutesTillTrain);
+	var minAway = frequency - tRemainder;
+		console.log("MINUTES TILL TRAIN: " + minAway);
 		//next arrival
-	// var nextArrival = moment().add(tMinutesTillTrain, "minutes")
-	// 		console.log("ARRIVAL TIME: " + moment(nextArrival).format("hh:mm A"))
+	nextArrival = moment().add(minAway, "m").format("hh:mm A");
+			console.log("ARRIVAL TIME: " + nextArrival);
 
 
 	console.log(minAway);
@@ -65,7 +66,7 @@ $('#submit').on('click', function(){
 		name: name, 
 		destination: destination,
 		frequency: frequency,
-		nextArrival: nextArrival,
+		//nextArrival: nextArrival,
 		minAway: minAway,
 		firstTrain: firstTrain
 	});
